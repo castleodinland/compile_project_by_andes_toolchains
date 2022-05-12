@@ -25,3 +25,6 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
+        
+    steps:
+    - uses: actions/checkout@v2
