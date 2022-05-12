@@ -23,8 +23,8 @@ jobs:
     container:
       image: castle6610/andestoolschain:1.0.0
       credentials:
-        username: castle6610
-        password: twtykknd@dk
+        username: castletest
+        password: zxcvbnm123
         
     steps:
     - uses: actions/checkout@v2
