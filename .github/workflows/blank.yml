@@ -28,3 +28,7 @@ jobs:
         
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Just Test
+      run: nds32le-elf-gcc
+      
