@@ -32,6 +32,6 @@ jobs:
     - name: Just Test
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
-        chmod 775 ./build.sh clean
+        chmod 775 ./build.sh
         ./build.sh clean
       
