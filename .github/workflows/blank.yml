@@ -34,4 +34,13 @@ jobs:
       run: |
         chmod 775 ./build.sh
         ./build.sh build
+        mkdir main_output
+        cp \BT_Audio_APP\make\output\*.* \main_output
+        
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v2
+      with:
+        name: release_bin
+        path: main_output
+        retention-days: 1
       
