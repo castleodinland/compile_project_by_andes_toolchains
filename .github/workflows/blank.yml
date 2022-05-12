@@ -24,12 +24,12 @@ jobs:
       image: castle6610/andestoolschain:1.0.0
       credentials:
         username: castletest
-        password: ${{ secrets.docker_hub_password}}
+        password: zxcvbnm123
         
     steps:
     - uses: actions/checkout@v2
     
     - name: Just Test
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: ls 
+      run: ./build.sh clean
       
