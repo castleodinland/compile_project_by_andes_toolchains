@@ -23,8 +23,8 @@ jobs:
     container:
       image: castle6610/andestoolschain:latest
       credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+        username: castle6610
+        password: twtykknd@dk
         
     steps:
     - uses: actions/checkout@v2
