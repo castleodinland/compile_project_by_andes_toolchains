@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "gcc",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:ANDES_TOOLSCHAIN}lib/gcc/nds32le-elf/4.9.3/include/**"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "${workspaceFolder}/**",
+                    "${env:ANDES_TOOLSCHAIN}lib/gcc/nds32le-elf/4.9.3/include/**"
+                ]
+            },
+            "defines": [
+
+            ],
+            "compilerPath": "C:/LLVM/bin/clang.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-clang-x64"
+        }
+    ],
+    "version": 4
+}

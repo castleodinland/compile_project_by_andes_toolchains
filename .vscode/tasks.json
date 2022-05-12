@@ -1,0 +1,166 @@
+// tasks_andes.json:
+
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+
+    "tasks": [
+        {
+            "label": "generate_ld",
+            "type": "shell",
+            "command": "nds_ldsag.exe -t ${env:ANDES_UTILS}nds32_template.txt ${workspaceFolder}\\BT_Audio_APP\\nds32-ae210p.sag -o ${workspaceFolder}\\BT_Audio_APP\\nds32-ae210p.ld",
+            "problemMatcher": [],
+        },
+        {
+            "label": "generate_makefiles",
+            "type": "shell",
+            "command": "${workspaceFolder}\\MVsB1_Base_SDK\\tools\\makefile_gen.py -i ${workspaceFolder}\\BT_Audio_APP\\makefile.ini -d ${workspaceFolder}\\BT_Audio_APP",
+            "problemMatcher": [],
+        },
+        {
+            "label": "make all",
+            "type": "shell",
+            "command": "make.exe all",
+            "args": [
+                "-C",
+                "${workspaceFolder}\\BT_Audio_APP\\make"
+            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                //"fileLocation": ["relative", "${input:build_dir}"],
+            },
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+            "dependsOrder": "sequence",
+            "dependsOn":[
+                "clean_project",
+                "generate_ld",
+                "generate_makefiles",
+            ]
+        },
+        {
+            "label": "clean_project",
+            "type": "shell",
+            "command": "rm -rf ",
+            "args": [
+                "${workspaceFolder}\\BT_Audio_APP\\make",
+            ],
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+            "problemMatcher": [ ],
+        },
+        {
+            "label": "remake",
+            "type": "shell",
+            "command": "make.exe all",
+            "args": [
+                "-C",
+                "${workspaceFolder}\\BT_Audio_APP\\make"
+            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                //"fileLocation": ["relative", "${input:build_dir}"],
+            },
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+        },
+        {
+            "label": "iceman",
+            "type": "shell",
+            //"command": "ICEman.exe -b 9944 -t 6666 -p 9901 -A -N reset-hold-script.tpl -H",
+            "command": "ICEman.exe -b 9902 -t 9901 -p 9903 -A -N reset-hold-script.tpl -H",
+            "problemMatcher": [],
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+            "options": {
+                "cwd": "${env:ANDES_ICE}"
+            },
+            "isBackground": true,
+        },
+        {
+            "label": "burn_advanced",
+            "type": "shell",
+            "command": "${workspaceFolder}\\MVsB1_Base_SDK\\tools\\b1_download_v1.7.exe --image ${workspaceFolder}\\BT_Audio_APP\\make\\output\\BT_Audio_APP.bin --addr 0x0 ${input:need_verify} ${input:need_erase_all} --port 9902",
+            "problemMatcher": [],
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+        },
+        {
+            "label": "burn_fast",
+            "type": "shell",
+            "command": "${workspaceFolder}\\MVsB1_Base_SDK\\tools\\b1_download_v1.7.exe --image ${workspaceFolder}\\BT_Audio_APP\\make\\output\\BT_Audio_APP.bin --addr 0x0 --port 9902",
+            "problemMatcher": [],
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+        },
+        {
+            "label": "restart",
+            "type": "shell",
+            "command": "nds32le-elf-gdb.exe -x ${env:ANDES_TOOLSCHAIN}bin\\dbg_reset_and_run.txt",
+            "problemMatcher": [],
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+            "options": {
+                "cwd": "${env:ANDES_TOOLSCHAIN}"
+            },
+        },
+
+        {
+            "label": "make config",
+            "type": "shell",
+            "command": "make.exe config",
+            "args": [
+                "-C",
+                "${workspaceFolder}\\BT_Audio_APP\\make"
+            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                //"fileLocation": ["relative", "${input:build_dir}"],
+            },
+            "group": { 
+                "kind": "build",
+                "isDefault": true   
+            },
+            "dependsOn":[
+                "generate_makefiles",
+            ]
+        },
+
+    ],
+    
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "need_verify",
+            "description": "should need verify or not after burn",
+            "options": [
+                "",
+                "--verify"
+            ]
+        },
+        {
+            "type": "pickString",
+            "id": "need_erase_all",
+            "description": "should need erase all or not after burn",
+            "options": [
+                "",
+                "--erase-all"
+            ]
+        }
+    ]
+}
