@@ -31,5 +31,5 @@ jobs:
     
     - name: Just Test
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: pwd 
+      run: ls 
       
