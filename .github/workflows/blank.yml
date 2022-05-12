@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: castle6610/andestoolschain:latest
+      image: castle6610/andestoolschain:1.0.0
       credentials:
         username: castle6610
         password: twtykknd@dk
