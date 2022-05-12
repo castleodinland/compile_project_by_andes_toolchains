@@ -24,7 +24,7 @@ jobs:
       image: castle6610/andestoolschain:1.0.0
       credentials:
         username: castletest
-        password: zxcvbnm123
+        password: ${{ secrets.docker_hub_password}}
         
     steps:
     - uses: actions/checkout@v2
