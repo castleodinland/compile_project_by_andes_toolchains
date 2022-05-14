@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: "start to build"
-          command: "nds32le-elf-gcc"
+          command: "./build.sh build"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
