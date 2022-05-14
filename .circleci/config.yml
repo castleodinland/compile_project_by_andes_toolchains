@@ -16,11 +16,7 @@ jobs:
       - checkout
       - run:
           name: "start to build"
-          command: |
-            "cd ~/project"
-            "ls"
-            # "chmod 775 ./build.sh"
-            # "./build.sh build"
+          command: "pwd"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
