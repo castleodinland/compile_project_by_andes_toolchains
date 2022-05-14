@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
+  build_firmware:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -16,11 +16,16 @@ jobs:
       - checkout
       - run:
           name: "start to build"
-          command: "chmod 775 ./build.sh && ./build.sh build"
+          command: |
+            chmod 775 ./build.sh 
+            ./build.sh build"
+      - store_artifacts:
+          path: /root/project/BT_Audio_APP/make/output
+          destination: artifact-file
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  bp10-sdk-build-workflow:
     jobs:
-      - say-hello
+      - build_firmware
