@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: check out and build
 
 # Controls when the workflow will run
 on:
@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Just Test
+    - name: begin to build
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: |
         chmod 775 ./build.sh
