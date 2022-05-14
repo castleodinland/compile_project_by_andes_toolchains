@@ -18,7 +18,8 @@ jobs:
           name: "start to build"
           command: |
             chmod 775 ./build.sh 
-            ./build.sh build"
+            ./build.sh build
+            
       - store_artifacts:
           path: /root/project/BT_Audio_APP/make/output
           destination: artifact-file
