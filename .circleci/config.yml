@@ -16,13 +16,16 @@ jobs:
       - checkout
       - run:
           name: "start to build"
+# zip -r ./BT_Audio_APP/make/output/build_output.zip ./BT_Audio_APP/make/output
           command: |
             chmod 775 ./build.sh 
             ./build.sh build
-            zip -r ./BT_Audio_APP/make/output/build_output.zip ./BT_Audio_APP/make/output
+            cd ./BT_Audio_APP/make
+            zip -r build_output.zip ./output
+
             
       - store_artifacts:
-          path: ./BT_Audio_APP/make/output/
+          path: ./BT_Audio_APP/make/
           destination: artifact-file
 
 # Invoke jobs via workflows
