@@ -17,7 +17,7 @@ jobs:
       - run:
           name: "start to build"
           command: |
-            "cd /"
+            "cd ~/project"
             "ls"
             # "chmod 775 ./build.sh"
             # "./build.sh build"
