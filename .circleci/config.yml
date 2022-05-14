@@ -19,9 +19,10 @@ jobs:
           command: |
             chmod 775 ./build.sh 
             ./build.sh build
+            zip -r ./build_output.zip ./BT_Audio_APP/make/output
             
       - store_artifacts:
-          path: /root/project/BT_Audio_APP/make/output
+          path: ./build_output.zip
           destination: artifact-file
 
 # Invoke jobs via workflows
